@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+
+# uv
+.venv/
+uv.lock
+
+# Secrets
+.env
+
+# Editor
+.vscode/
+
+# Artifacts
+.data/
+*.pkl
+*.tmp
+*.bad
+*.err
