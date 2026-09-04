@@ -1,4 +1,4 @@
-name: lint
+name: test
 
 on:
   push:
@@ -6,12 +6,10 @@ on:
   pull_request:
 
 jobs:
-  ruff:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
       - run: uv sync --group dev
-      - run: uv run ruff check .
-      - run: uv run ruff format --check .
-      - run: uv run ty check --error all
+      - run: uv run pytest

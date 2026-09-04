@@ -1,5 +1,7 @@
 sq (saqal hq (hep-queue))
 
+Read the [docs](https://asaqal.github.io/sq/):
+
 ```mermaid
 flowchart TD
     subgraph Client["Client (submitter)"]

@@ -1,26 +1,29 @@
 # Python
 __pycache__/
 
-# uv
-.venv/
-uv.lock
-
-# ruff
-.ruff_cache/
-
 # Secrets
 .env
 
 # Editor
 .vscode/
 
-# Sphinx
-docs/source/api/
-docs/build/
-
 # Artifacts
-.data/
+.local/
 *.pkl
 *.tmp
 *.bad
 *.err
+
+# pytest
+.pytest_cache/
+
+# ruff
+.ruff_cache/
+
+# Sphinx
+docs/source/api/
+docs/build/
+
+# uv
+.venv/
+uv.lock
