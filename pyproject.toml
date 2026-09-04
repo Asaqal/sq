@@ -14,6 +14,44 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pre-commit>=4.6.2",
     "ruff>=0.16.5",
     "ty>=0.0.78",
 ]
+docs = [
+    "sphinx>=9.1.0",
+    "sphinx-rtd-theme>=3.1.0",
+]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["docs/"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D203",    # conflicts with D211 (blank-line-before-class)
+    "D213",    # conflicts with D212 (multi-line-summary-first-line)
+    "COM812",  # conflicts with the formatter (trailing comma)
+    "ISC001",  # conflicts with the formatter (implicit string concat)
+    "CPY001",  # copyright headers not needed for this project
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.flake8-annotations]
+allow-star-arg-any = false
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.ty.rules]
+all = "error"

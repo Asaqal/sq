@@ -11,6 +11,10 @@ uv.lock
 # Editor
 .vscode/
 
+# Sphinx
+docs/source/api/
+docs/build/
+
 # Artifacts
 .data/
 *.pkl

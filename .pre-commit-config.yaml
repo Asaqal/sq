@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.6
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: sphinx-apidoc
+        name: regenerate sphinx apidoc
+        entry: uv run sphinx-apidoc -o docs/source/api src/sq -f
+        language: system
+        pass_filenames: false
