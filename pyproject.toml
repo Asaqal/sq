@@ -21,8 +21,9 @@ dev = [
     "ty>=0.0.78",
 ]
 docs = [
+    "pydata-sphinx-theme>=0.21.0",
     "sphinx>=9.1.0",
-    "sphinx-rtd-theme>=3.1.0",
+    "sphinxcontrib-mermaid>=2.1.1",
 ]
 
 [tool.pytest.ini_options]
@@ -39,7 +40,7 @@ ignore = [
     "D213",    # conflicts with D212 (multi-line-summary-first-line)
     "COM812",  # conflicts with the formatter (trailing comma)
     "ISC001",  # conflicts with the formatter (implicit string concat)
-    "CPY001",  # copyright headers not needed for this project
+    "CPY001",  # copyright headers currently unnecessary
 ]
 
 [tool.ruff.lint.pydocstyle]
