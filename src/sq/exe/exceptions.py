@@ -10,18 +10,21 @@ class SubprocessExitCode(IntEnum):
     ----------
     SUCCESS : int
         The subprocess completed successfully.
-    SERIALIZATION_ERROR : int
-        An error occurred during task-payload deserialization or task-result serialization.
+    DESERIALIZATION_ERROR : int
+        An error occurred during task-payload deserialization.
     TASK_EXECUTION_ERROR : int
         An error occurred during task execution.
+    SERIALIZATION_ERROR : int
+        An error occurred during task-result serialization.
     PATH_WRITE_ERROR : int
         An error occurred while writing the task-result to a .tmp path.
     """
 
     SUCCESS = 0
-    SERIALIZATION_ERROR = 2
+    DESERIALIZATION_ERROR = 2
     TASK_EXECUTION_ERROR = 3
-    PATH_WRITE_ERROR = 4
+    SERIALIZATION_ERROR = 4
+    PATH_WRITE_ERROR = 5
 
 
 class SubprocessError(Exception):
@@ -36,10 +39,10 @@ class SubprocessError(Exception):
     exit_code: SubprocessExitCode
 
 
-class SerializationError(SubprocessError):
-    """Raised when an error occurs during task-payload deserialization or task-result serialization."""  # noqa: E501
+class DeserializationError(SubprocessError):
+    """Raised when an error occurs during task-payload deserialization."""
 
-    exit_code = SubprocessExitCode.SERIALIZATION_ERROR
+    exit_code = SubprocessExitCode.DESERIALIZATION_ERROR
 
 
 class TaskExecutionError(SubprocessError):
@@ -48,8 +51,14 @@ class TaskExecutionError(SubprocessError):
     exit_code = SubprocessExitCode.TASK_EXECUTION_ERROR
 
 
+class SerializationError(SubprocessError):
+    """Raised when an error occurs during task-result serialization."""
+
+    exit_code = SubprocessExitCode.SERIALIZATION_ERROR
+
+
 class PathWriteError(SubprocessError):
-    """Raised when an error occurs while writing the task-result to a .tmp path."""
+    """Raised when an error occurs while writing the task-result to a ``.tmp`` path."""
 
     exit_code = SubprocessExitCode.PATH_WRITE_ERROR
 

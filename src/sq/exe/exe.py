@@ -5,6 +5,7 @@ from pathlib import Path
 
 from sq.contracts.task_payload import TaskPayload
 from sq.exe.exceptions import (
+    DeserializationError,
     PathWriteError,
     SerializationError,
     SubprocessError,
@@ -16,8 +17,8 @@ from sq.utils import deserialize, serialize
 def main() -> int:
     """Execute a single task in its own subprocess.
 
-    Read arguments from `sys.argv`, deserialize the task-payload, execute the task,
-    serialize the result, and write it to a .tmp path.
+    Read arguments from ``sys.argv``, deserialize the task-payload, execute the task,
+    serialize the result, and write it to a ``.tmp`` path.
 
     Returns
     -------
@@ -26,14 +27,14 @@ def main() -> int:
 
     Raises
     ------
-    SerializationError
+    DeserializationError
         Exit code ``2``: An error occurred during task-payload deserialization.
     TaskExecutionError
         Exit code ``3``: An error occurred during task execution.
     SerializationError
-        Exit code ``2``: An error occurred during task-result serialization.
+        Exit code ``4``: An error occurred during task-result serialization.
     PathWriteError
-        Exit code ``4``: An error occurred while writing the task-result to a .tmp path.
+        Exit code ``5``: An error occurred while writing the task-result to a .tmp path.
     """
     task_id = int(sys.argv[1])
     serialized_task_payload = sys.argv[2]
@@ -42,7 +43,7 @@ def main() -> int:
         task_payload = deserialize(serialized_task_payload, TaskPayload)
     except Exception as e:
         err_msg = f"An error occurred during task-{task_id}'s payload deserialization: {e}"
-        raise SerializationError(err_msg) from e
+        raise DeserializationError(err_msg) from e
 
     try:
         task_result = task_payload.func(*task_payload.args, **task_payload.kwargs)
@@ -56,7 +57,7 @@ def main() -> int:
         err_msg = f"An error occurred during task-{task_id}'s result serialization: {e}"
         raise SerializationError(err_msg) from e
 
-    path = Path(f".local/{task_id}/{task_id}.tmp")
+    path = Path(f".local/{task_id}/{task_id}.tmp")  # ! figure out actual directory system
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(serialized_task_result)
