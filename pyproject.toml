@@ -12,6 +12,9 @@ dependencies = [
     "redis>=8.1.0",
 ]
 
+[project.optional-dependencies]
+coffea = ["coffea>=2024.1.0"]
+
 [dependency-groups]
 dev = [
     "pre-commit>=4.6.2",

@@ -1,15 +1,15 @@
-"""Contract for a payload of a function call to serialize, transmit, and execute in a subprocess."""
+"""TODO."""
 
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from collections.abc import Callable
-from dataclasses import dataclass, field
 
 
 @dataclass
-class TaskPayload:
-    """Payload of a function call to serialize, transmit, and execute in a subprocess.
+class DirectTaskPayload:
+    """TODO.
 
     Attributes
     ----------

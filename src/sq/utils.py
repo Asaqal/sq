@@ -66,6 +66,7 @@ def deserialize[T](serialized_obj: str, obj_class: type[T]) -> T:
 
 
 """
+TODO
 maybe custom exceptions for utils as well?
 i could re-use SerializeError but that inherits from SubprocessError
 """
