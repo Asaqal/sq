@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
-      - run: uv sync --group docs
+      - run: uv sync --all-extras --all-groups
       - run: uv run sphinx-apidoc -o docs/source/api src/sq -f
       - run: uv run sphinx-build -b html docs/source docs/build
       - uses: actions/upload-pages-artifact@v3
