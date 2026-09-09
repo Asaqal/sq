@@ -33,7 +33,7 @@ class CoffeaTaskPayload:
     Attributes
     ----------
     func : Callable[[WorkItem], Any]
-        The task to execute.
+        Task to execute.
     args : tuple[WorkItem, ...]
         Positional arguments to pass to `func`.
     kwargs : dict[str, Any]
@@ -45,29 +45,29 @@ class CoffeaTaskPayload:
 
     @property
     def func(self) -> Callable[[WorkItem], Any]:
-        """Return the deserialized task function.
+        """Return the task to execute.
 
         Returns
         -------
         Callable[[WorkItem], Any]
-            Task function deserialized from `_serialized_func_path`.
+            Task function deserialized from `_serialized_func_path`. # ! COFFEA SPECIFIC
         """
         return deserialize(self._serialized_func_path.read_text(), Callable)
 
     @cached_property
     def args(self) -> tuple[WorkItem, ...]:
-        """Return the positional arguments for the task function.
+        """Return the positional arguments to pass to `func`.
 
         Returns
         -------
         tuple[WorkItem, ...]
-            Tuple containing the work item passed to the task function.
+            Tuple containing a single ``WorkItem``.
         """
         return (self._work_item,)
 
     @cached_property
     def kwargs(self) -> dict[str, Any]:
-        """Return the keyword arguments for the task function.
+        """Return the keyword arguments to pass to `func`.
 
         Returns
         -------

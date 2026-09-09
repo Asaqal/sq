@@ -10,12 +10,12 @@ class TaskPayload(Protocol):
     """Interface for payloads used to execute a task.
 
     Implementations provide a callable along with the positional and keyword
-    arguments required to invoke it.
+    arguments required to invoke it. # ! GARBAGE
 
     Attributes
     ----------
     func : Callable[..., Any]
-        Callable representing the task to execute.
+        Task to execute.
     args : tuple[Any, ...]
         Positional arguments to pass to `func`.
     kwargs : dict[str, Any]
@@ -24,18 +24,18 @@ class TaskPayload(Protocol):
 
     @property
     def func(self) -> Callable[..., Any]:
-        """Return the callable representing the task.
+        """Return the task to execute.
 
         Returns
         -------
         Callable[..., Any]
-            Task callable to execute.
+            Task to execute.
         """
         ...
 
     @property
     def args(self) -> tuple[Any, ...]:
-        """Return the positional arguments for the task.
+        """Return the positional arguments to pass to `func`.
 
         Returns
         -------
@@ -46,7 +46,7 @@ class TaskPayload(Protocol):
 
     @property
     def kwargs(self) -> dict[str, Any]:
-        """Return the keyword arguments for the task.
+        """Return the keyword arguments to pass to `func`.
 
         Returns
         -------

@@ -75,8 +75,8 @@ def main() -> int:
         result_path.parent.mkdir(parents=True, exist_ok=True)
         result_path.write_text(serialized_task_result)
     except Exception as e:
-        errmsg = f"An error occurred while writing task-{task_id}'s result to {result_path}: {e}"
-        raise PathWriteError(errmsg) from e
+        err_msg = f"An error occurred while writing task-{task_id}'s result to {result_path}: {e}"
+        raise PathWriteError(err_msg) from e
 
     return 0
 

@@ -3,12 +3,7 @@ sq (saqal hq (hep-queue))
 Read the [docs](https://asaqal.github.io/sq/)
 
 TODO:
-input schema -> heavykey or some other alternative?
-
 need workers to cache payload's and serve that to the subprocess first if it already exists
-
-i still dont understand the whole heavy key thing and how the work submitted by the client
-is being granulated and delivered to the subprocesses
 
 imperative docstrings throughout
 add mermaid/other diagarams per module to explain how it all interacts
@@ -28,3 +23,17 @@ then if the worker follows those and tries them on their own
 it needs to have a system to stop after X retries
 or just have it send back a failure ack with a retry yes or no bool
 instead of an ack it should be in the .err or .out file
+-> maybe a mechanism to set retry policies somewhere else and then the worker acts accordingly?
+idk if it's possible
+
+fix exe.py's .local to some actual relative/absolute path solution
+
+make a verbose version which i can extend to extra logging info
+-> need a way to relay the info to the worker upon exit
+either through some stdout or stderr -> tradeoffs between both?
+or by writing to a file -> not guaranteed to actually work
+
+how to ensure/create protocol that .in files are of a certain json structure
+idk if it's possible or if it even matters
+
+overall check single vs double back ticks in my docstrings

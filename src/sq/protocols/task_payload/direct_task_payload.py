@@ -14,7 +14,7 @@ class DirectTaskPayload:
     Attributes
     ----------
     func : Callable[..., Any]
-        The task to execute.
+        Task to execute.
     args : tuple[Any, ...]
         Positional arguments to pass to `func`.
     kwargs : dict[str, Any]
